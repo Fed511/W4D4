@@ -2,27 +2,9 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-[System.Serializable]
-public struct Stats
-{
-    public int atk;
-    public int def;
-    public int res;
-    public int spd;
-    public int crt;
-    public int aim;
-    public int eva;
-    public Stats(int atk, int def, int res, int spd, int crt, int aim, int eva)
-    {
-        this.atk = atk;
-        this.def = def;
-        this.res = res;
-        this.spd = spd;
-        this.crt = crt;
-        this.aim = aim;
-        this.eva = eva;
-    }
-}
+
+
+
 [System.Serializable]
 public enum ELEMENT
 {
@@ -45,6 +27,13 @@ public class Weapon : MonoBehaviour
     [SerializeField] private DAMAGE_TYPE dmgType;
     [SerializeField] private ELEMENT elem;
     [SerializeField] private Stats bonusStats;
+    public Weapon(string name, DAMAGE_TYPE dmgType, ELEMENT elem, Stats bonusStats)
+    {
+        this.name = name;
+        this.dmgType = dmgType;
+        this.elem = elem;
+        this.bonusStats = bonusStats;
+    }
 
     // Getters
     public string GetWeaponName()

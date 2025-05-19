@@ -8,6 +8,7 @@ public class Hero : MonoBehaviour
 {
     [SerializeField] private string heroName;
     [SerializeField] private int hp;
+    [SerializeField] private int speed;
     [SerializeField] private Stats baseStats;
     [SerializeField] private ELEMENT resistance;
     [SerializeField] private ELEMENT weakness;
@@ -43,6 +44,12 @@ public class Hero : MonoBehaviour
     {
         return weapon;
     }
+    public int GetSpeed()
+    {
+        return speed;
+    }
+
+  
 
     // Setters
     public void SetHeroName(string name)
@@ -50,9 +57,9 @@ public class Hero : MonoBehaviour
         heroName = name;
     }
 
-    public void SetHP(int hp)
+    public void SetHP(int value)
     {
-        this.hp = hp;
+        hp = Mathf.Max(0, value); 
     }
 
     public void SetBaseStats(Stats stats)
@@ -74,10 +81,30 @@ public class Hero : MonoBehaviour
     {
         this.weapon = weapon;
     }
+    public void SetSpeed(int value)
+    {
+        speed = value;
+    }
+
+    public void AddHp(int amount)
+    {
+        SetHP(hp + amount);
+    }
+
+    public void TakeDamage(int damage)
+    {
+        AddHp(-damage);
+    }
+
+    public bool IsAlive()
+    {
+        return hp > 0;
+    }
 
     void Start()
     {
-        Debug.Log("Hero: " + GetHeroName() + ", HP: " + GetHP());
+        SetHP(Random.Range(50, 101));
+        Debug.Log($"Hero: {heroName}, HP: {hp}");
     }
 
     void Update()

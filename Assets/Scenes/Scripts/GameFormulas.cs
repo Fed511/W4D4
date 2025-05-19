@@ -54,8 +54,8 @@ public static class GameFormulas
     public static int CalculateDamage(Hero attacker, Hero defender)
     {
         // Somma le statistiche base e bonus dell'arma
-        Stats attackerStats = SumStats(attacker.GetBaseStats(), attacker.GetWeapon().GetBonusStats());
-        Stats defenderStats = SumStats(defender.GetBaseStats(), defender.GetWeapon().GetBonusStats());
+        Stats attackerStats = Stats.SumStats(attacker.GetBaseStats(), attacker.GetWeapon().GetBonusStats());
+        Stats defenderStats = Stats.SumStats(defender.GetBaseStats(), defender.GetWeapon().GetBonusStats());
 
         // Calcolo del danno base
         int attackValue = attackerStats.atk;
@@ -82,17 +82,6 @@ public static class GameFormulas
         return Mathf.Max(damage, 0);
     }
 
-    private static Stats SumStats(Stats a, Stats b)
-    {
-        return new Stats(
-            a.atk + b.atk,
-            a.def + b.def,
-            a.res + b.res,
-            a.spd + b.spd,
-            a.crt + b.crt,
-            a.aim + b.aim,
-            a.eva + b.eva
-        );
-    }
+   
 }
 
